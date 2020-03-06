@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1FB17190240DC53B00F8EC0F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1718F240DC53B00F8EC0F /* DetailViewController.swift */; };
-		1FB17192240DD8A200F8EC0F /* CameraUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB17191240DD8A200F8EC0F /* CameraUseViewController.swift */; };
 		1FB17195240DE8DF00F8EC0F /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB17194240DE8DF00F8EC0F /* Notes.swift */; };
 		1FC510B9240D8C54006BD691 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC510B8240D8C54006BD691 /* AppDelegate.swift */; };
 		1FC510BB240D8C54006BD691 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC510BA240D8C54006BD691 /* SceneDelegate.swift */; };
@@ -16,11 +15,12 @@
 		1FC510C0240D8C54006BD691 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC510BE240D8C54006BD691 /* Main.storyboard */; };
 		1FC510C2240D8C58006BD691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC510C1240D8C58006BD691 /* Assets.xcassets */; };
 		1FC510C5240D8C58006BD691 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC510C3240D8C58006BD691 /* LaunchScreen.storyboard */; };
+		1FDE48802411E98600DEC4D9 /* NotesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE487F2411E98600DEC4D9 /* NotesController.swift */; };
+		1FDE48822411F03300DEC4D9 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDE48812411F03300DEC4D9 /* NoteTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1FB1718F240DC53B00F8EC0F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		1FB17191240DD8A200F8EC0F /* CameraUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUseViewController.swift; sourceTree = "<group>"; };
 		1FB17194240DE8DF00F8EC0F /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 		1FC510B5240D8C54006BD691 /* Notare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FC510B8240D8C54006BD691 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +30,8 @@
 		1FC510C1240D8C58006BD691 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FC510C4240D8C58006BD691 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FC510C6240D8C58006BD691 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FDE487F2411E98600DEC4D9 /* NotesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesController.swift; sourceTree = "<group>"; };
+		1FDE48812411F03300DEC4D9 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,9 +77,10 @@
 			children = (
 				1FB17193240DE8B100F8EC0F /* Resources */,
 				1FB17194240DE8DF00F8EC0F /* Notes.swift */,
+				1FDE487F2411E98600DEC4D9 /* NotesController.swift */,
 				1FC510BC240D8C54006BD691 /* ViewController.swift */,
+				1FDE48812411F03300DEC4D9 /* NoteTableViewCell.swift */,
 				1FB1718F240DC53B00F8EC0F /* DetailViewController.swift */,
-				1FB17191240DD8A200F8EC0F /* CameraUseViewController.swift */,
 				1FC510BE240D8C54006BD691 /* Main.storyboard */,
 				1FC510C6240D8C58006BD691 /* Info.plist */,
 			);
@@ -156,10 +159,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FC510BD240D8C54006BD691 /* ViewController.swift in Sources */,
+				1FDE48802411E98600DEC4D9 /* NotesController.swift in Sources */,
 				1FC510B9240D8C54006BD691 /* AppDelegate.swift in Sources */,
 				1FC510BB240D8C54006BD691 /* SceneDelegate.swift in Sources */,
-				1FB17192240DD8A200F8EC0F /* CameraUseViewController.swift in Sources */,
 				1FB17190240DC53B00F8EC0F /* DetailViewController.swift in Sources */,
+				1FDE48822411F03300DEC4D9 /* NoteTableViewCell.swift in Sources */,
 				1FB17195240DE8DF00F8EC0F /* Notes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

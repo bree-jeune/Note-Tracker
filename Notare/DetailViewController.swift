@@ -9,7 +9,21 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    var notesController: NoteController?
+    
     @IBOutlet weak var detailTextView: UITextView!
+    
+    
+    @IBOutlet weak var noteTitleTextField: UITextField!
+    
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        guard let noteTitle = noteTitleTextField.text else { return }
+        notesController?.createNote(named: noteTitle)
+        navigationController?.popViewController(animated: true)
+    }
     
     var text: String = ""
     
@@ -20,12 +34,14 @@ class DetailViewController: UIViewController {
 
         detailTextView.text = text
         self.navigationItem.largeTitleDisplayMode = .never
+        detailTextView.isUserInteractionEnabled = true
+        detailTextView.becomeFirstResponder() // function to bring up software keyboard by automatically selecting text view
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        detailTextView.becomeFirstResponder() // function to bring up software keyboard by automatically selecting text view
+        
     }
     
     func setText(t: String) {
@@ -36,24 +52,11 @@ class DetailViewController: UIViewController {
         if isViewLoaded {
             // modify text view after view has loaded
             detailTextView.text = t
+            detailTextView.isUserInteractionEnabled = true
+            detailTextView.becomeFirstResponder() // function to bring up software keyboard by automatically selecting text view
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        masterView.newRowText = detailTextView.text
-        detailTextView.resignFirstResponder()
-        
-    }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
