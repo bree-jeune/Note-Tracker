@@ -10,23 +10,24 @@ import UIKit
 
 class NoteTableViewCell: UITableViewCell {
    
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBOutlet weak var categoryLabel: UILabel!
-    
-    
-    var notes: Note? {
+    var note: Note? {
         didSet {
             updateViews()
         }
     }
     
     
-    func updateViews() {
-        nameLabel.text = notes?.name
-        categoryLabel.text = (notes?.category.rawValue)
-    }
     
-
+    
+    private func updateViews() {
+        guard let note = note else { return }
+        textLabel?.text = note.name
+        if let date = note.date {
+            detailTextLabel?.text = dateFormatter.string(from: date)
+        } else {
+            detailTextLabel?.text = ""
+        }
+      
+    }
 }
 

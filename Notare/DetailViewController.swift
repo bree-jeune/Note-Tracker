@@ -8,9 +8,12 @@
 
 import UIKit
 
+
 class DetailViewController: UIViewController {
     
+    var note: Note?
     var notesController: NoteController?
+
     
     @IBOutlet weak var detailTextView: UITextView!
     
@@ -31,17 +34,23 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        detailTextView.layer.shadowColor = UIColor.black.cgColor
+        detailTextView.layer.shadowPath = UIBezierPath(rect: detailTextView.bounds).cgPath
+        detailTextView.layer.shadowRadius = 5
+        detailTextView.layer.shadowOffset = .zero
+        detailTextView.layer.shadowOpacity = 0.5
 
         detailTextView.text = text
         self.navigationItem.largeTitleDisplayMode = .never
         detailTextView.isUserInteractionEnabled = true
         detailTextView.becomeFirstResponder() // function to bring up software keyboard by automatically selecting text view
-
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     func setText(t: String) {
@@ -55,8 +64,8 @@ class DetailViewController: UIViewController {
             detailTextView.isUserInteractionEnabled = true
             detailTextView.becomeFirstResponder() // function to bring up software keyboard by automatically selecting text view
         }
+        
     }
     
-
-
+ 
 }

@@ -8,9 +8,17 @@
 
 import Foundation
 
+var dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    return formatter
+}()
+
 struct Note: Codable, Equatable {
-  var name: String
-  var category: Category
+  let name: String
+  let category: Category
+    let date: Date? = Date()
+
 
 }
 

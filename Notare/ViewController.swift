@@ -13,21 +13,14 @@ import UIKit
 
 // adding a protocol to get class to conform to UITableViewDataSource and UITableViewDelegate
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchDisplayDelegate {
-    
-    
-    let notesController = NoteController()
+
     
     // making table view a property inside view controller
     @IBOutlet weak var tableView: UITableView!
     
-    // creating a new instance of the variable "data" in order to get a data source for table view
+    let notesController = NoteController()
     
-    
-    var selectedRow: Int = -1
-    var newRowText: String = ""
-    
-    
-    let tableData: [String] = []
+    lazy var tableData = notesController.notes
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
     
@@ -51,17 +44,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
             return controller
         })()
-
-        // Reload the table
-        tableView.reloadData()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
    
     
     // IBAction to call editNote method
     @IBAction func editNote(_ sender: UIBarButtonItem) {
         self.navigationItem.leftBarButtonItem = editButtonItem
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,13 +66,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //numberOfRowsInSection method - how many rows are going to be in the table view?
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if  (resultSearchController.isActive) {
-            return filteredTableData.count
-        } else {
-            return notesController.notes.count // setting number of rows based on the count of elements in the array "data"
-            
-        }
+        notesController.notes.count
         
+//        if  (resultSearchController.isActive) {
+//            return filteredTableData.count
+//        } else {
+//            return tableData.count // setting number of rows based on the count of elements in the array "data"
+//        }
+//
         
         
         
@@ -98,18 +93,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //        cell.notes = note
 //        return cell
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "noteCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "noteCell", for: indexPath) as? NoteTableViewCell else { return UITableViewCell() }
         
-        if (resultSearchController.isActive) {
-            cell.textLabel?.text = filteredTableData[indexPath.row]
-
-            return cell
-        }
-        else {
-            cell.textLabel?.text = tableData[indexPath.row]
-            print(tableData[indexPath.row])
-            return cell
-        }
+        
+        cell.note = notesController.notes[indexPath.row]
+        
+//        if resultSearchController.isActive {
+//            cell.textLabel?.text = filteredTableData[indexPath.row]
+//
+//            return cell
+//        }
+//        else {
+//            cell.textLabel?.text = tableData[indexPath.row].name
+//            print(tableData[indexPath.row])
+//            return cell
+//        }
+        return cell
     }
     
     // when edit button is selected, puts table into editing mode - allows for deletion
@@ -133,9 +132,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // uses the delagate to find which row was selected
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "detailNotes", sender: nil)
-        
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailView" {
+            guard let detailVC = segue.destination as? DetailViewController else { return }
+            detailVC.notesController = notesController
+        }
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -148,5 +150,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.tableView.reloadData()
     }
     
-    
+//    func createNewNote() {
+//        
+//        if tableView.isEditing {
+//            return
+//        }
+//        
+//        let name: String = "" // gives note a string title based on user input
+//        notesController.insert(name, at: 0) // indexes new note at the beginning of the index of "data" array
+//
+//        let indexPath: IndexPath = IndexPath(row: 0, section: 0) // creates a new row after adding a new note to array
+//         tableView.insertRows(at: [indexPath], with: .automatic) // animates the creation of a new row
+//        
+//        // identifies selected row when segue is triggered / connected to prepare for segue method
+//        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+//        
+//        self.performSegue(withIdentifier: "detailNotes", sender: nil)
+//        
+//        tableView.reloadData()
+//    }
+//    
+
 }
+
+

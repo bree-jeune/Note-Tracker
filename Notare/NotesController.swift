@@ -30,7 +30,7 @@ class NoteController {
     @discardableResult func createNote(named name: String, ofCategory category:  Category = .unassigned) -> Note {
    
     let note = Note(name: name, category: .unassigned)
-       notes.append(note)
+       notes.insert(note, at: 0)
        saveToPersistentStore()
        return note
    }
